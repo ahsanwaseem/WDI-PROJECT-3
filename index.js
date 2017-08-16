@@ -1,25 +1,21 @@
-const express     = require('express');
-const app         = express();
-const path        = require('path');
-const routes      = require('./api/routes');
-const config      = require('./config/config');
-const cors        = require('cors');
-const morgan      = require('morgan');
-const bodyParser  = require('body-parser');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+const { port, env, dbURI } = require('./config/config');
+const routes = require('./config/routes');
 
-// app.set('port',3000);
-if (app.get('env') !== 'production') app.use(cors());
-app.use(morgan('dev'));
+const app = express();
 
-app.use(function(req,res,next){
-  console.log(req.method,req.url);
-  next();
-});
+mongoose.connect(dbURI);
 
-app.use(express.static(path.join(__dirname,'public')));
+if(env !== 'test') app.use(morgan('dev'));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(`${__dirname}/public`));
+app.use(bodyParser.json());
 
-app.use('/api',routes);
+app.use('/api', routes);
+app.get('/*', (req, res) => res.sendFile(`${__dirname}/public/index.html`));
 
-app.listen(config.port, () => console.log(`Express has started on port: ${config.port}`));
+app.listen(port, () => console.log(`Express is listening on port ${port}`));

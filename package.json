@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "bower install && gulp deploy",
-    "start" :"node index.js"
+    "start": "node index.js"
   },
   "author": "Alex Chin <alex@alexchin.co.uk>",
   "license": "ISC",
@@ -61,6 +61,7 @@
     "jsonwebtoken": "^7.4.2",
     "mongoose": "^4.11.7",
     "morgan": "^1.8.2",
+    "ng-resource": "^1.3.2",
     "validator": "^8.0.0"
   },
   "devDependencies": {

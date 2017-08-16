@@ -1,14 +1,35 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Project 3</title>
-    <!-- inject:js -->
-    <!-- endinject -->
-    <!-- inject:css -->
-    <!-- endinject -->
-  </head>
-  <body>
-    <h1>Project 3</h1>
-  </body>
+<html ng-app="hotelApp">
+<head>
+  <base href="/">
+  <title>Hotel App</title>
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body ng-controller="MainCtrl as main">
+  <nav class="navbar navbar-default" role="navigation">
+  	<div class="navbar-header">
+  		<button type="button" class="navbar-toggle" ng-click="main.isNavCollapsed = !main.isNavCollapsed">
+  			<span class="sr-only">Toggle navigation</span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  			<span class="icon-bar"></span>
+  		</button>
+  		<a class="navbar-brand" href="#">The Birds</a>
+  	</div>
+  	<div class="collapse navbar-collapse" uib-collapse="main.isNavCollapsed">
+  		<ul class="nav navbar-nav">
+        <li ng-if="main.isAuthenticated()"><a ui-sref="hotelsIndex">Hotel Index</a></li>
+        <li ng-if="main.isAuthenticated()"><a ui-sref="hotelsNew">Add a Hotel</a></li>
+        <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
+        <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
+        <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
+  		</ul>
+  	</div>
+  </nav>
+    <main ui-view></main>
+</body>
 </html>

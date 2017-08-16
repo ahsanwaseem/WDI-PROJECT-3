@@ -1,0 +1,13 @@
+<h1>Index</h1>
+
+{{hotelsIndex}}
+
+<br>
+<br>
+<br>
+
+<div ng-repeat="hotel in hotelsIndex.all" index="$index">
+  <p>{{hotel.name}}</p>
+  <p>{{hotel.description}}</p>
+  <img ng-src="{{hotel.image}}" alt="">
+</div>
