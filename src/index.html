@@ -3,6 +3,7 @@
 <head>
   <base href="/">
   <title>Hotel App</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOKG8Nx-zih8c_tKS8hYisxlnevauh4GM"></script>
   <!-- inject:js -->
   <!-- endinject -->
   <!-- inject:css -->
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body ng-controller="MainCtrl as main">
+
   <nav class="navbar navbar-default" role="navigation">
   	<div class="navbar-header">
   		<button type="button" class="navbar-toggle" ng-click="main.isNavCollapsed = !main.isNavCollapsed">
@@ -18,18 +20,24 @@
   			<span class="icon-bar"></span>
   			<span class="icon-bar"></span>
   		</button>
-  		<a class="navbar-brand" href="#">The Birds</a>
+  		<a class="navbar-brand" href="#">Hotels</a>
   	</div>
   	<div class="collapse navbar-collapse" uib-collapse="main.isNavCollapsed">
   		<ul class="nav navbar-nav">
-        <li ng-if="main.isAuthenticated()"><a ui-sref="hotelsIndex">Hotel Index</a></li>
-        <li ng-if="main.isAuthenticated()"><a ui-sref="hotelsNew">Add a Hotel</a></li>
+        <li ng-if="main.isAuthenticated()"><a ui-sref="hotelsIndex">Hotels</a></li>
+        <li ng-if="main.isAuthenticated()"><a ui-sref="hotelsNew">Add Hotel +</a></li>
         <li ng-if="!main.isAuthenticated()"><a ui-sref="login">Login</a></li>
         <li ng-if="!main.isAuthenticated()"><a ui-sref="register">Register</a></li>
         <li ng-if="main.isAuthenticated()"><a ng-click="main.logout()" href="#">Logout</a></li>
   		</ul>
   	</div>
   </nav>
-    <main ui-view></main>
+
+  <div class="container">
+    <div class="alert alert-info" ng-if="main.message">{{ main.message }}</div>
+    <main ui-view>
+    </main>
+  </div>
+
 </body>
 </html>

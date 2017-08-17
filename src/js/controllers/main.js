@@ -2,16 +2,17 @@ angular
   .module('hotelApp')
   .controller('MainCtrl', MainCtrl);
 
-MainCtrl.$inject = ['$rootScope', '$state'];
-function MainCtrl($rootScope, $state) {
+MainCtrl.$inject = ['$rootScope', '$state', '$auth'];
+function MainCtrl($rootScope, $state, $auth) {
   const vm = this;
 
   vm.isNavCollapsed = true;
+  vm.isAuthenticated = $auth.isAuthenticated;
 
   $rootScope.$on('error', (e, err) => {
     vm.stateHasChanged = false;
     vm.message = err.data.message;
-    $state.go('login');
+    if(err.status === 401) $state.go('login');
   });
 
   $rootScope.$on('$stateChangeSuccess', () => {
@@ -20,4 +21,10 @@ function MainCtrl($rootScope, $state) {
     vm.isNavCollapsed = true;
   });
 
+  function logout() {
+    $auth.logout();
+    $state.go('login');
+  }
+
+  vm.logout = logout;
 }

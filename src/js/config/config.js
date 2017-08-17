@@ -23,12 +23,15 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'js/views/hotels/show.html',
     controller: 'HotelsShowCtrl as hotelsShow'
   })
-  // Login
   .state('login', {
     url: '/login',
     templateUrl: 'js/views/auth/login.html',
     controller: 'LoginCtrl as login'
+  })
+  .state('register', {
+    url: '/register',
+    templateUrl: 'js/views/auth/register.html',
+    controller: 'RegisterCtrl as register'
   });
-
   $urlRouterProvider.otherwise('/');
 }

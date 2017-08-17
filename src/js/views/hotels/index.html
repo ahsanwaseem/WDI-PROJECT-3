@@ -7,7 +7,7 @@
 <br>
 
 <div ng-repeat="hotel in hotelsIndex.all" index="$index">
-  <p>{{hotel.name}}</p>
+  <a ui-sref="hotelsShow({ id: hotel._id })"><h2>{{ hotel.name }}</h2></a>
   <p>{{hotel.description}}</p>
   <img ng-src="{{hotel.image}}" alt="">
 </div>

@@ -16,6 +16,9 @@ router.route('/hotels')
   .post(hotels.create)
   .get(hotels.index);
 
+router.route('/hotels/:id')
+  .all(secureRoute)
+  .get(hotels.show);
 
 
 module.exports = router;

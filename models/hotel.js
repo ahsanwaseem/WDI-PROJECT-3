@@ -7,9 +7,11 @@ const hotelSchema = new mongoose.Schema({
   location: {type: String},
   description: {type: String},
   hours: {type: String},
-  image: {type: String}
+  image: {type: String},
+  lat: {type: Number},
+  lng: {type: Number}
 },{
-  timestamps: true
+  timestamps: false
 });
 
 module.exports = mongoose.model('Hotel', hotelSchema);
